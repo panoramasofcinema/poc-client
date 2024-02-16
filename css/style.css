@@ -1,0 +1,370 @@
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(24, 24, 24);
+  color: yellow;
+  margin: 0px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  letter-spacing: .06em;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: crosshair;
+}
+a:hover, span:hover, label:hover, #playVid:hover, .delete-tag:hover {
+	color: yellow; /* whitesmoke */
+}
+span, label {
+  cursor: crosshair;
+  margin-top: 5px;
+}
+input {
+	outline: none;
+}
+
+/* NAVIGATION BAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: left;
+  z-index: 1;
+  font-family: "Helvetica Neue", sans-serif;
+}
+.title {
+  position: fixed;
+  top: 10px;
+  left: 16px;
+  font-size: 22px;
+  letter-spacing: .06em; /*.08*/
+}
+.subTitle {
+  margin-top: 5px;
+  font-size: 18px;
+  letter-spacing: .06em;
+}
+.contBtns {
+  position: fixed;
+  top: 50px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.pagination {
+  margin-top: 5px;
+  display: block;
+}
+#navResults {
+  margin-top: 5px;
+}
+.myPocMessage {
+  margin-top: 5px;
+}
+
+
+/* HOME PAGE */
+.hero-image {
+  background-image: url("../imgs/shrimps.jpg");
+  height: 100vh; /* calc(98vh) */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: static;
+}
+.navbarBottom {
+	position: fixed;
+  width: 400px;
+  bottom: 16px;
+  right: 16px;
+  text-align: right;
+}
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* MODAL SEARCH */
+.modalSearch {
+  display: none;
+  position: fixed; 
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(24, 24, 24, .5);
+  overflow-y: auto;
+  z-index: 2; /* 2*/
+}
+.selectors {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+.closeModalBtn {
+  position: relative;
+  bottom: 30px;
+  font-weight: bold;
+}
+#searchBtn, #navigateBtn, #myPanoramasBtn{
+  position: relative;
+  top: 0px
+}
+
+/* controler */
+select {
+  position: relative;
+  bottom: 15px;
+  width: 350px;
+  color: yellow; /* whitesmoke */
+  background-color: rgba(0,0,0,0); /* rgba(0,0,0,0)*/
+  border-color: yellow; /* whitesmoke */
+  border-width: 1px;
+  border-style: dashed;
+}
+.slider, .slider2 {
+  position: relative;
+  bottom: 10px;
+  -webkit-appearance: none;
+  width: 168px;
+  height: 2px;
+  border-radius: 50%;
+  background-image: linear-gradient(yellow, yellow); /* whitesmoke */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.slider::-webkit-slider-thumb, .slider2::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  background: yellow; /* whitesmoke */
+}
+.slider2 {
+  width: 345px;
+}
+
+
+/* MODAL MY PANORAMAS */
+.modalMyPanoramas {
+  display: none;
+  position: fixed; 
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(24, 24, 24, 0.5);
+  overflow-y: auto;
+  z-index: 3;
+}
+#tag, #user-name {
+  width: 300px;
+  color: yellow; /* whitesmoke */
+  background-color: rgba(0, 0, 0, 0);
+  border-color: yellow; /* whitesmoke */
+  border-width: 1px;
+  border-style: dashed;
+  font-size: inherit;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: inherit;
+
+}
+#tag::placeholder, #user-name::placeholder {
+  font-size: 13px; /* 14px */
+  opacity: 1;
+  color: yellow; /* whitesmoke */
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: inherit;
+  font-style: italic;
+}
+.myPUsername {
+  position: relative;
+  top: 10px;
+}
+
+
+/* MODAL TAG-NAMES INFO  */
+.modalUrsTgs {
+  display: none;
+  position: fixed; 
+  padding-top: 100px; /* fix this */
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(24, 24, 24, 0.5);
+  overflow-y: auto;
+  z-index: 4;
+}
+
+
+/* MODAL NAVIGATE  */
+.modalNavigate {
+  display: none;
+  position: fixed; 
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(24, 24, 24, 0.5);
+  overflow-y: auto;
+  z-index: 3;
+}
+.navigate-grid_ {
+  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 8px;
+}
+
+
+/* MODAL MAP  */
+.modalMap {
+  display: none;
+  position: fixed; 
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(24, 24, 24, 0.5);
+  overflow-y: auto;
+  z-index: 3;
+}
+.navigate-grid {
+  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 8px;
+}
+
+
+/* SEARCH PAGE */
+.results-grid {
+  margin-top: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 8px;
+}
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 8px;
+  margin-bottom: 50px;
+}
+.column img {
+  margin-top: 16px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+
+/* MODAL ONE IMAGE  */
+.modal {
+  display: none;
+  position: fixed; 
+  padding-top: 100px; /* fix this */
+  left: 0; 
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(24, 24, 24, 0.5);
+  overflow-y: auto;
+  z-index: 4;
+}
+.closeBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  font-weight: bold;
+  max-width: 1080px;
+}
+.modal-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  margin-top: 20px;
+  max-width: 1080px;
+
+}
+.info {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  margin-top: 20px;
+  max-width: 1080px;
+}
+#playVid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  margin-top: 20px;
+  max-width: 1080px;
+}
+#myVid {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  margin-top: 20px;
+  max-width: 1080px;
+}
+.tagInput {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  color: yellow; /* whitesmoke */
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  margin-top: 20px;
+  font-size: inherit;
+  max-width: 1080px;
+}
+#usrName::placeholder, #tagName::placeholder { /* fix this */
+  font-size: 13px; /* 14px */
+  opacity: 1;
+  color: yellow; /* whitesmoke */
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: inherit;
+  font-style: italic;
+}
+#tagBtn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 66%;
+  margin-bottom: 100px;
+  margin-top: 20px;
+  max-width: 1080px;
+}
+
+/* ABOUT  */
+.about {
+  font-size: 18px;
+  letter-spacing: .06em;
+  position: absolute;
+  top: 250px;
+  left: 16px;
+  width: 55%;
+}
+.hero-image2 {
+  background-image: url("../imgs/books.jpg");
+  height: 100vh; /* calc(98vh) */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: static;
+}

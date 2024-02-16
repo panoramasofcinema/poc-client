@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-63F67G6YJP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-63F67G6YJP');
+    </script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>PoC | SEARCH</title>
+    <link rel="icon" type="image/x-icon" href="imgs/pop.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- -->
+    <div class="navbar">
+        <span class="title"><a href='index.html'>PANORAMAS OF CINEMA 🍿</a></span>
+        <div class="contBtns">
+            <span onclick="openModalSearch(this)">/ SEARCH</span>
+            <span onclick="openModalNavigate(this)">/ NAVIGATE</span>
+            <span onclick="openModalMyPanoramas(this)">/ MY PoC</span>
+            <div>&nbsp;</div>
+            <div class="subTitle">👀 SEARCH</div>
+            <div class="resultsCount"></div>
+        </div>
+    </div>
+
+    <section>
+        <div class="results-grid" id="myData">
+            <div class="column" id="c0"></div>
+            <div class="column" id="c1"></div>
+            <div class="column" id="c2"></div>
+            <div class="column" id="c3"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="modal-content" id="myModals"></div>
+    </section>
+
+    <section name="controllers">
+        <div class='modalSearch'>
+            <div class="selectors">
+                <span class="closeModalBtn" onclick="closeModalSearch(this)">X</span>
+                <div>
+                    <select id="places_list">
+                        <option value="0"></option>
+                    </select>
+                    <select id="objects_list">
+                        <option value="0"></option>
+                    </select>
+                    <select id="faces_list">
+                        <option value="no_faces,small_faces">all_images</option>
+                        <option value="no_faces">no_faces</option>
+                        <option value="small_faces">with_faces</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="range" min="1" max="100" value="1" class="slider" id="placesMin"></input>
+                    <input type="range" min="1" max="100" value="100" class="slider" id="placesMax"></input>
+                    <input type="range" min="1" max="100" value="1" class="slider" id="objectsMin"></input>
+                    <input type="range" min="1" max="100" value="100" class="slider" id="objectsMax"></input>
+                    <input type="range" min="1" max="100" value="100" class="slider2" id=""></input>
+                </div>
+                <span id="searchBtn">/ search</span>
+            </div>
+        </div>
+
+        <div class='modalNavigate'>
+            <div class="selectors">
+                <span class="closeModalBtn" onclick="closeModalNavigate(this)">X</span>
+                <div>
+                    <select id="characters_list">
+                        <option value="0"></option>
+                    </select>
+                    <select id="movies_list">
+                        <option value="0"></option>
+                    </select>
+                </div>
+                <span id="navigateBtn">/ navigate</span>
+            </div>
+        </div>
+
+        <div class='modalMap'>
+            <div class="selectors">
+                <span class="closeModalBtn" onclick="closeModalMap(this)">X</span>
+                <div class="navigate-grid" id="myData">
+                    <div class="column" id="cMap0"></div>
+                    <div class="column" id="cMap1"></div>
+                    <div class="column" id="cMap2"></div>
+                    <div class="column" id="cMap3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class='modalMyPanoramas'>
+            <div class="selectors">
+                <span class="closeModalBtn" onclick="closeModalMyPanoramas(this)">X</span>
+                <div>
+                    <input type="text" id="user-name" placeholder="&nbsp;user name" autocomplete="off"></input>
+                    <span id="getUsers" onclick=doModalUsers(this)>&nbsp;?</span>
+                </div>
+                <span id="myPanoramasBtn" onclick=doMyPanoramas(this)>/ my PoC</span>
+            </div>
+        </div>
+
+        <div class='modalUrsTgs'></div>
+    </section>
+
+    <script src="js/search.js"></script>
+    <script src="js/controllers.js"></script>
+
+</body>
+</html>
