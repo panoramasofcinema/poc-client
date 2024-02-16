@@ -24,12 +24,11 @@ label:hover,
 #playVid:hover,
 .delete-tag:hover {
   color: yellow;
-  /* whitesmoke */
 }
 
 span,
 label {
-  cursor: crosshair;
+  cursor: pointer;
   margin-top: 5px;
 }
 
@@ -53,7 +52,6 @@ input {
   left: 16px;
   font-size: 22px;
   letter-spacing: .06em;
-  /*.08*/
 }
 
 .subTitle {
@@ -72,6 +70,14 @@ input {
 
 #navBtn {
   margin-right: 25px;
+}
+
+.contMessage {
+  position: fixed;
+  top: 85px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .pagination {
