@@ -81,15 +81,21 @@ input {
 }
 
 .pagination {
-  margin-top: 5px;
+  position: fixed;
+  top: 140px;
+  left: 16px;
   display: block;
+}
+
+.myPocMessage {
+  margin-top: 5px;
 }
 
 #navResults {
   margin-top: 5px;
 }
 
-.myPocMessage {
+.myPUsername {
   margin-top: 5px;
 }
 
@@ -98,7 +104,6 @@ input {
 .hero-image {
   background-image: url("../imgs/shrimps.jpg");
   height: 100vh;
-  /* calc(98vh) */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -240,11 +245,6 @@ select {
   font-family: "Helvetica Neue", sans-serif;
   font-weight: inherit;
   font-style: italic;
-}
-
-.myPUsername {
-  position: relative;
-  top: 10px;
 }
 
 

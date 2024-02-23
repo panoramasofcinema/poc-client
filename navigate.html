@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-63F67G6YJP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-63F67G6YJP');
     </script>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -24,18 +25,19 @@
     <div class="navbar">
         <span class="title"><a href='index.html'>PANORAMAS OF CINEMA 🍿</a></span>
         <div class="contBtns">
-            <span onclick="openModalSearch(this)">/ SEARCH</span>
-            <span onclick="openModalNavigate(this)">/ NAVIGATE</span>
-            <span onclick="openModalMyPanoramas(this)">/ MY PoC</span>
-            <div>&nbsp;</div>
+            <span onclick="openModalSearch(this)" id="navBtn">/ SEARCH</span>
+            <span onclick="openModalNavigate(this)" id="navBtn">/ NAVIGATE</span>
+            <span onclick="openModalMyPanoramas(this)" id="navBtn">/ MY PoC</span>
+        </div>
+        <div class="contMessage">
             <div class="subTitle">🪐 NAVIGATE</div>
             <div id="navResults"></div>
-            <div class="pagination">
-                <span id="first" onclick="firstPage()">/ first&nbsp;&nbsp;&nbsp;</span>
-                <span id="previous" onclick="previousPage()">/ previous&nbsp;&nbsp;&nbsp;</span>
-                <span id="next" onclick="nextPage()">/ next&nbsp;&nbsp;&nbsp;</span>
-                <span id="last" onclick="lastPage()">/ last&nbsp;&nbsp;&nbsp;</span>
-            </div>
+        </div>
+        <div class="pagination">
+            <span id="first" onclick="firstPage()">/ first&nbsp;&nbsp;&nbsp;</span>
+            <span id="previous" onclick="previousPage()">/ previous&nbsp;&nbsp;&nbsp;</span>
+            <span id="next" onclick="nextPage()">/ next&nbsp;&nbsp;&nbsp;</span>
+            <span id="last" onclick="lastPage()">/ last&nbsp;&nbsp;&nbsp;</span>
         </div>
     </div>
 
@@ -124,4 +126,5 @@
     <script src="js/navigate.js"></script>
     <script src="js/controllers.js"></script>
 </body>
+
 </html>

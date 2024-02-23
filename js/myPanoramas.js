@@ -13,38 +13,38 @@ var queryValue = urlParams.get('q');
 queryValue = queryValue.split(' ').join('&');
 
 var userName = urlParams.get('u');
-navUser.innerText = "hello "+userName;
+navUser.innerText = "hello " + userName;
 
 var userTag = urlParams.get('t');
 //console.log(userName);
 
 let url = 'https://tags.panoramasofcinema.ch/tags?';
-fetch(url+queryValue)
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    if (data.body.length == 0) {
-        window.alert("nothing here. try another query");
-    }
-    appendInfo(data.body);
-    appendData(data.body);
-})
+fetch(url + queryValue)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        if (data.body.length == 0) {
+            window.alert("nothing here. try another query");
+        }
+        appendInfo(data.body);
+        appendData(data.body);
+    })
 
 // DISPLAY THE INFO
-function appendInfo(data){
+function appendInfo(data) {
     // the count
-    navResults.innerText = 'you have '+data.length+' images here';
+    navResults.innerText = 'you have ' + data.length + ' images';
 
     // tags-users
-    if (queryValue.includes('GET_FRAMES_USER&')){
-        let thisTags = data.map(function(f){
+    if (queryValue.includes('GET_FRAMES_USER&')) {
+        let thisTags = data.map(function (f) {
             return f.tag;
         });
         let thisTagsU = [...new Set(thisTags)]
-        navInfo.innerText = 'and '+thisTagsU.length + ' tags : '+ thisTagsU.sort().join(' . ');
-    } else if (queryValue.includes('GET_FRAMES_TAG&')){
-        let thisUsers = data.map(function(f){
+        navInfo.innerText = 'in ' + thisTagsU.length + ' tags : ' + thisTagsU.sort().join(' . ');
+    } else if (queryValue.includes('GET_FRAMES_TAG&')) {
+        let thisUsers = data.map(function (f) {
             return f.user;
         });
         let thisUsersU = [...new Set(thisUsers)]
@@ -65,17 +65,17 @@ function onClick(element) {
 
 // DISPLAY THE RESULTS
 function appendData(data) {
-	for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
         // result container
-		var resultCont = document.createElement("div");
-		resultCont.className = "img_container";
-		resultCont.setAttribute("id", "grid-item");
+        var resultCont = document.createElement("div");
+        resultCont.className = "img_container";
+        resultCont.setAttribute("id", "grid-item");
 
         // the image result
         var s3BucketName = "panoramas-of-cinema"
         var region_name = "eu-central-1"
-        var objectKey = "frames_db"+data[i].movie+"/by_scene"+data[i].frame;
-        var frame_url = "https://"+s3BucketName+".s3."+region_name+".amazonaws.com/"+objectKey;
+        var objectKey = "frames_db" + data[i].movie + "/by_scene" + data[i].frame;
+        var frame_url = "https://" + s3BucketName + ".s3." + region_name + ".amazonaws.com/" + objectKey;
 
         var imgResult = document.createElement('img');
         imgResult.className = "img_response";
@@ -87,10 +87,10 @@ function appendData(data) {
 
         // the image info
         var imgInfo = document.createElement('div');
-        if(data[i].tag){
-            imgInfo.innerText = 'tag: '+data[i].tag;
+        if (data[i].tag) {
+            imgInfo.innerText = 'tag: ' + data[i].tag;
         } else {
-            imgInfo.innerText = 'tag: '+userTag;
+            imgInfo.innerText = 'tag: ' + userTag;
         }
         resultCont.appendChild(imgInfo);
 
@@ -101,7 +101,7 @@ function appendData(data) {
         delTag.setAttribute('onclick', "deleteTag(this)");
         delTag.setAttribute('data-movie', data[i].movie);
         delTag.setAttribute('data-frame', data[i].frame);
-        if(data[i].tag){
+        if (data[i].tag) {
             delTag.setAttribute('data-tag', data[i].tag);
         } else {
             delTag.setAttribute('data-tag', userTag);
@@ -109,8 +109,8 @@ function appendData(data) {
         resultCont.appendChild(delTag);
 
         // column placement
-		document.getElementById('c'+(i%4)).appendChild(resultCont);
-	}
+        document.getElementById('c' + (i % 4)).appendChild(resultCont);
+    }
 
     // secondary container
     var secondContainer = document.getElementById("myModals");
@@ -158,24 +158,24 @@ function appendData(data) {
     var playVid = document.createElement("div");
     playVid.setAttribute("id", "playVid");
     playVid.innerText = "/ play";
-    playVid.onclick = function() {
+    playVid.onclick = function () {
         myVid.style.display = "block";
         vidInfo.style.display = "block";
         let thisM = modalContent.dataset.movie.slice(1,);
-        let thisF = modalContent.dataset.frame.slice(7,-4);
-        let url = "https://clips.panoramasofcinema.ch/clip?movie="+thisM+"&frame="+thisF;
-        
-        fetch(url)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            vidInfo.setAttribute('data-before', data['before']);
-            vidInfo.setAttribute('data-after', data['after']);
+        let thisF = modalContent.dataset.frame.slice(7, -4);
+        let url = "https://clips.panoramasofcinema.ch/clip?movie=" + thisM + "&frame=" + thisF;
 
-            myVid.setAttribute('src', data['play']);
-            myVid.play();
-        })
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                vidInfo.setAttribute('data-before', data['before']);
+                vidInfo.setAttribute('data-after', data['after']);
+
+                myVid.setAttribute('src', data['play']);
+                myVid.play();
+            })
     }
     modalContent.appendChild(playVid);
 
@@ -193,14 +193,14 @@ function appendData(data) {
 
     var vidInfoAfter = document.createElement('label');
     vidInfoAfter.innerHTML = "&nbsp;&nbsp; / +";
-    vidInfoAfter.onclick = function() {
+    vidInfoAfter.onclick = function () {
         myVid.setAttribute('src', vidInfo.dataset.after);
         myVid.play();
     }
 
     var vidInfoBefore = document.createElement('label');
     vidInfoBefore.innerText = "/ - ";
-    vidInfoBefore.onclick = function() {
+    vidInfoBefore.onclick = function () {
         myVid.setAttribute('src', vidInfo.dataset.before);
         myVid.play();
     }
@@ -228,25 +228,25 @@ function appendData(data) {
     var tagBtn = document.createElement("span");
     tagBtn.setAttribute("id", "tagBtn");
     tagBtn.innerText = '/ add tag';
-    tagBtn.onclick = function() {
+    tagBtn.onclick = function () {
         let tagUrl = "https://tags.panoramasofcinema.ch/tags";
         let thisUsr = document.querySelector("#usrName").value;
-        let thisTag = document.querySelector("#tagName").value; 
-        let thisFrame = modalContent.dataset.movie+','+modalContent.dataset.frame;
-        let thisR = tagUrl+'?action=ADD&tag='+thisTag+'&user='+thisUsr+'&frame='+thisFrame;
-        
+        let thisTag = document.querySelector("#tagName").value;
+        let thisFrame = modalContent.dataset.movie + ',' + modalContent.dataset.frame;
+        let thisR = tagUrl + '?action=ADD&tag=' + thisTag + '&user=' + thisUsr + '&frame=' + thisFrame;
+
         fetch(thisR)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            let r = data['statusCode'];
-            if (r == 200) {
-                alert("tag added. aplausos");
-            } else {
-                alert("error " + r);
-            }
-        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                let r = data['statusCode'];
+                if (r == 200) {
+                    alert("tag added. aplausos");
+                } else {
+                    alert("error " + r);
+                }
+            })
     }
     modalContent.appendChild(tagBtn);
 
@@ -256,32 +256,32 @@ function appendData(data) {
 // DELETE TAG
 function deleteTag(element) {
     let goOn = confirm("you're about to delete this tag. are you sure ?");
-    if (goOn == true){
+    if (goOn == true) {
         let tagUrl = "https://tags.panoramasofcinema.ch/tags";
-        let thisFrame = element.dataset.movie+','+element.dataset.frame;
-        let thisR = tagUrl+'?action=DELETE&tag='+element.dataset.tag+'&user='+userName+'&frame='+thisFrame;
+        let thisFrame = element.dataset.movie + ',' + element.dataset.frame;
+        let thisR = tagUrl + '?action=DELETE&tag=' + element.dataset.tag + '&user=' + userName + '&frame=' + thisFrame;
 
         fetch(thisR)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            let r = data['statusCode'];
-            if (r == 200) {
-                alert("tag deleted");
-            } else {
-                alert("error " + r);
-            }
-        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                let r = data['statusCode'];
+                if (r == 200) {
+                    alert("tag deleted");
+                } else {
+                    alert("error " + r);
+                }
+            })
     }
 }
 
-function getTags(){
+function getTags() {
     var thisTag = document.querySelector("#tag").value;
     //console.log(thisTag)
-    if (thisTag.length > 0){
-        this_request = 'action=GET_FRAMES_USER_TAG tag='+thisTag+' user='+userName;
-        let url = "myPanoramas.html?q="+this_request+'&u='+userName+'&t='+thisTag;
+    if (thisTag.length > 0) {
+        this_request = 'action=GET_FRAMES_USER_TAG tag=' + thisTag + ' user=' + userName;
+        let url = "myPanoramas.html?q=" + this_request + '&u=' + userName + '&t=' + thisTag;
         window.open(url, '_self');
     } else {
         window.alert("type a tag");
