@@ -15,7 +15,6 @@ body {
 a {
   color: inherit;
   text-decoration: inherit;
-  cursor: crosshair;
 }
 
 a:hover,
